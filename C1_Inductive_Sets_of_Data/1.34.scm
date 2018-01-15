@@ -1,0 +1,15 @@
+(define path
+  (lambda (n bst)
+    (if (null? bst)
+        '()
+        (if (= n (car bst))
+            '()
+            (if (< n (car bst))
+                (cons 'left (path n (cadr bst)))
+                (cons 'right (path n (caddr bst))))))))
+
+(equal? (path 17 '(14 (7 () (12 () ()))
+                      (26 (20 (17 () ())
+                              ())
+                          (31 () ()))))
+        '(right left left))
